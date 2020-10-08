@@ -1,15 +1,8 @@
 import { Field, Formik, Form } from 'formik';
-import { PrismaClient } from '@prisma/client';
 
-const Home = ({ movies }) => (
+const Home = () => (
   <div className="container">
-  {movies.map((movie) => (
-      <div key={movie.id}>
-        <p>Name: {movie.movieName}</p>
-        <p>Director: {movie.director}</p>
-        <p>Year Released: {movie.yearReleased}</p>
-      </div>
-    ))}
+
     <Formik
       initialValues={{
         director: '',
@@ -44,9 +37,3 @@ const Home = ({ movies }) => (
 );
 
 export default Home;
-
-export const getServerSideProps = async () => {
-  const prisma = new PrismaClient();
-  const movies = await prisma.movie.findMany();
-  return { props: { movies } };
-};
