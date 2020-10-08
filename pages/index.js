@@ -7,11 +7,11 @@ const Home = () => (
       initialValues={{
         director: '',
         movieName: '',
-        yearReleased: '',
+        yearReleased: '', 
       }}
       onSubmit={(values) => {
-        alert('oi')
-        fetch('http://localhost:3000/api/movies', {
+        alert(process.env.NEXT_PUBLIC_URL_SERVER)
+        fetch( process.env.NEXT_PUBLIC_URL_SERVER, {
           method: 'POST',
           body: JSON.stringify({ ...values, yearReleased: Number(values.yearReleased) }),
         }).then(t=>{ console.log(t);});
@@ -19,7 +19,7 @@ const Home = () => (
     >
       <Form>
         <label>
-          Movie Name
+          Movie Name {process.env.NEXT_PUBLIC_URL_SERVER}
           <Field name="movieName" type="text"></Field>
         </label>
         <label>
